@@ -10,7 +10,7 @@ $htmlEditorNames = Config::inst()->get(Shortcodable::class, 'htmleditor_names');
 
 if (is_array($htmlEditorNames)) {
     $plugin = ModuleResourceLoader::singleton()
-        ->resolveURL('sheadawson/silverstripe-shortcodable:javascript/editor_plugin.js');
+        ->resolveURL('mi32dogs/silverstripe-shortcodable:javascript/editor_plugin.js');
 
     foreach ($htmlEditorNames as $htmlEditorName) {
         TinyMCEConfig::get($htmlEditorName)->enablePlugins(['shortcodable' => $plugin]);

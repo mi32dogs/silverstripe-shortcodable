@@ -3,10 +3,10 @@ Name: shortcodable
 ---
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_javascript:
-    - 'sheadawson/silverstripe-shortcodable:javascript/editor_plugin.js'
-    - 'sheadawson/silverstripe-shortcodable:javascript/shortcodable.js'
+    - 'mi32dogs/silverstripe-shortcodable:javascript/editor_plugin.js'
+    - 'mi32dogs/silverstripe-shortcodable:javascript/shortcodable.js'
   extra_requirements_css:
-    - 'sheadawson/silverstripe-shortcodable:css/shortcodable.css'
+    - 'mi32dogs/silverstripe-shortcodable:css/shortcodable.css'
 SilverStripe\Control\Director:
   rules:
     ShortcodableController: Silverstripe\Shortcodable\Controller\ShortcodableController
