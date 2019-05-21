@@ -12,6 +12,11 @@
         "silverstripe/admin": "^1",
         "silverstripe/framework": "^4"
     },
+    "autoload": {
+        "psr-4": {
+            "SilverStripe\\Shortcodable\\": "src/"
+        }
+    },
     "support": {
         "issues": "https://github.com/mi32dogs/silverstripe-shortcodable/issues"
     },
