@@ -1,0 +1,45 @@
+{
+  "name": "silverstripe-shortcodable",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "NODE_ENV=production webpack -p --bail --progress",
+    "dev": "NODE_ENV=development webpack --progress",
+    "watch": "NODE_ENV=development webpack --watch --progress",
+    "css": "WEBPACK_CHILD=css npm run build",
+    "lint": "eslint client/src && sass-lint -v",
+    "js-fix": "eslint client/src --fix"
+  },
+  "author": "Shea Dawson",
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "silverstripe",
+    "module"
+  ],
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
+  },
+  "dependencies": {
+    "babel-loader": "7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "rc-tree": "1.8.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "@silverstripe/eslint-config": "0.0.5",
+    "@silverstripe/webpack-config": "0.3.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.9.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "isomorphic-fetch": "^2.2.1",
+    "modernizr": "^3.3.1",
+    "sass-loader": "^7.1.0",
+    "webpack": "^3.12.0",
+    "webpack-cli": "^3.0.8"
+  }
+}

@@ -20,7 +20,7 @@ if (is_array($htmlEditorNames)) {
 //        echo $module->getResource('client/javascript/editor_plugin.js');die();
         $config->enablePlugins(array(
             'shortcodable' => $module->getResource('client/dist/TinyMCE_shortcodable.js'),
-        ))->addButtonsToLine(1, 'shortcodable');
+        ))->insertButtonsAfter( 'code', ' | shortcodable' );
     }
 }
 
