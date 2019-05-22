@@ -1,31 +1,35 @@
 {
     "name": "mi32dogs/silverstripe-shortcodable",
-    "description": "Provides a GUI for CMS users to insert Shortcodes into the HTMLEditorField + an API for developers to define Shortcodable DataObjects and Views",
     "type": "silverstripe-vendormodule",
-    "keywords": [],
-    "license": "BSD-3-Clause",
+    "description": "Provides a GUI for CMS users to insert Shortcodes into the HTMLEditorField + an API for developers to define Shortcodable DataObjects and Views",
+    "keywords": [
+        "silverstripe",
+        "shortcode"
+    ],
+    "license": "BSD License",
     "authors": [
-        {"name": "Rob van Tuin","email": "mi32dogs@gmail.com"}
+        {
+            "name": "Shea Dawson",
+            "email": "shea@livesource.co.nz"
+        }
     ],
     "require": {
         "composer/installers": "*",
-        "silverstripe/admin": "^1",
-        "silverstripe/framework": "^4"
+        "silverstripe/framework": "^4.1.0"
     },
     "autoload": {
         "psr-4": {
-            "SilverStripe\\Shortcodable\\": "src/"
+            "SilverStripe\\Shortcodable\\": "src"
         }
     },
     "support": {
-        "issues": "https://github.com/mi32dogs/silverstripe-shortcodable/issues"
+        "issues": "https://github.com/sheadawson/silverstripe-shortcodable/issues"
     },
     "extra": {
         "expose": [
-            "css",
-            "images",
-            "javascript"
-        ]
+            "client"
+        ],
+        "installer-name": "silverstripe-shortcodable"
     },
-    "homepage": "https://github.com/mi32dogs/silverstripe-shortcodable"
+    "homepage": "https://github.com/sheadawson/silverstripe-shortcodable"
 }

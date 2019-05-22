@@ -2,7 +2,9 @@
 
 namespace Silverstripe\Shortcodable\Extensions;
 
-use SilverStripe\View\ViewableData;
+use SilverStripe\Core\Config\Configurable;
+use SilverStripe\Core\Extensible;
+use SilverStripe\Core\Injector\Injectable;
 
 /**
  * ShortcodableParser - temporary measure, based on wordpress parser
@@ -10,8 +12,12 @@ use SilverStripe\View\ViewableData;
  *
  * @todo update SS ShortcodeParser to offer a public api for converting a shortcode to a data array, and use that instead.
  */
-class ShortcodableParser extends ViewableData
+class ShortcodableParser
 {
+    use Injectable;
+    use Configurable;
+    use Extensible;
+
     /**
      * @var array
      */
@@ -43,7 +49,7 @@ class ShortcodableParser extends ViewableData
      */
     public function parse_atts($content)
     {
-        $content = preg_match_all('/([^ ]*)=(\'([^\']*)\'|\"([^\"]*)\"|([^ ]*))/', trim($content), $c);
+        $content = preg_match_all('/([^ =]*)=(\'([^\']*)\'|\"([^\"]*)\"|([^ ]*))/', trim($content), $c);
         list($dummy, $keys, $values) = array_values($c);
         $c = array();
         foreach ($keys as $key => $value) {

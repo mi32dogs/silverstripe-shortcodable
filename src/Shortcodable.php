@@ -4,9 +4,13 @@ namespace Silverstripe\Shortcodable;
 
 use SilverStripe\Core\Injector\Injector;
 use Silverstripe\Shortcodable\Extensions\ShortcodableParser;
+use SilverStripe\Core\Config\Configurable;
+use SilverStripe\Core\Extensible;
+use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\View\Parsers\ShortcodeParser;
 use SilverStripe\Core\Config\Config;
-use SilverStripe\View\ViewableData;
+
+use SilverStripe\Dev\Debug;
 
 /**
  * Shortcodable
@@ -14,8 +18,12 @@ use SilverStripe\View\ViewableData;
  *
  * @author shea@livesource.co.nz
  **/
-class Shortcodable extends ViewableData
+class Shortcodable
 {
+    use Injectable;
+    use Configurable;
+    use Extensible;
+
     private static $shortcodable_classes = array();
 
     public static function register_classes($classes)
@@ -29,20 +37,24 @@ class Shortcodable extends ViewableData
 
     public static function register_class($class)
     {
+
         if (class_exists($class)) {
             if (!singleton($class)->hasMethod('parse_shortcode')) {
                 user_error("Failed to register \"$class\" with shortcodable. $class must have the method parse_shortcode(). See /shortcodable/README.md", E_USER_ERROR);
             }
-
+            /*  SHOWPRO UPDATE  */
             $safeClassName = str_replace('\\', '_', $class);
             ShortcodeParser::get('default')->register($safeClassName, array($class, 'parse_shortcode'));
             Injector::inst()->get(ShortcodableParser::class)->register($class);
+
+            /*ShortcodeParser::get('default')->register($class, array($class, 'parse_shortcode'));
+            singleton(ShortcodableParser::class)->register($class);*/
         }
     }
 
     public static function get_shortcodable_classes()
     {
-        return Config::inst()->get(Shortcodable::class, 'shortcodable_classes');
+        return Config::inst()->get(self::class, 'shortcodable_classes');
     }
 
     public static function get_shortcodable_classes_fordropdown()

@@ -1,29 +1,29 @@
 <?php
 
-use SilverStripe\Core\Config\Config;
-use SilverStripe\Core\Manifest\ModuleResourceLoader;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\HTMLEditor\TinyMCEConfig;
 use Silverstripe\Shortcodable\Shortcodable;
-use SilverStripe\View\Requirements;
 
-//Requirements::css( 'mi32dogs/silverstripe-shortcodable: css/shortcodable.css' );
-//Requirements::javascript( 'mi32dogs/silverstripe-shortcodable: javascript/editor_plugin.js' );
-//Requirements::javascript( 'mi32dogs/silverstripe-shortcodable: javascript/shortcodable.js' );
+if (!defined('SHORTCODABLE_DIR')) {
+    define('SHORTCODABLE_DIR', rtrim(basename(dirname(__FILE__))));
+}
+if (SHORTCODABLE_DIR != 'silverstripe-shortcodable') {
+    throw new \Exception('The edit shortcodable module is not installed in correct directory. The directory should be named "shortcodable"');
+}
 
 // enable shortcodable buttons and add to HtmlEditorConfig
-$htmlEditorNames = Config::inst()->get(Shortcodable::class, 'htmleditor_names');
-
+$htmlEditorNames = Shortcodable::config()->htmleditor_names;
 if (is_array($htmlEditorNames)) {
-    $plugin = ModuleResourceLoader::singleton()
-        ->resolveURL('mi32dogs/silverstripe-shortcodable: javascript/editor_plugin.js');
-
+    $module = ModuleLoader::inst()->getManifest()->getModule('mi32dogs/silverstripe-shortcodable');
     foreach ($htmlEditorNames as $htmlEditorName) {
-        TinyMCEConfig::get($htmlEditorName)->enablePlugins(['shortcodable' => $plugin]);
-        //TinyMCEConfig::get($htmlEditorName)->addButtonsToLine(1, '| shortcodable');
-        TinyMCEConfig::get($htmlEditorName)->insertButtonsAfter( 'code', ' | shortcodable' );
+        $config = TinyMCEConfig::get($htmlEditorName);
+//        echo $module->getResource('client/javascript/editor_plugin.js');die();
+        $config->enablePlugins(array(
+            'shortcodable' => $module->getResource('client/dist/TinyMCE_shortcodable.js'),
+        ))->addButtonsToLine(1, 'shortcodable');
     }
 }
 
 // register classes added via yml config
-$classes = Config::inst()->get(Shortcodable::class, 'shortcodable_classes');
+$classes = Shortcodable::config()->shortcodable_classes;
 Shortcodable::register_classes($classes);
