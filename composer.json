@@ -14,8 +14,7 @@
         }
     ],
     "require": {
-        "composer/installers": "*",
-        "silverstripe/framework": "^4.1.0"
+        "mi32dogs/showpro-config": "*"
     },
     "autoload": {
         "psr-4": {
