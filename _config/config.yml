@@ -6,7 +6,7 @@ After:
 
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_css:
-    - 'mi32dogs/silverstripe-shortcodable: client/css/shortcodable.css'
+    - 'showpro/silverstripe-shortcodable: client/css/shortcodable.css'
 
 SilverStripe\Control\Director:
   rules:

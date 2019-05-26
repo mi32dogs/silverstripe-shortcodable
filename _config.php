@@ -14,7 +14,7 @@ if (SHORTCODABLE_DIR != 'silverstripe-shortcodable') {
 // enable shortcodable buttons and add to HtmlEditorConfig
 $htmlEditorNames = Shortcodable::config()->htmleditor_names;
 if (is_array($htmlEditorNames)) {
-    $module = ModuleLoader::inst()->getManifest()->getModule('mi32dogs/silverstripe-shortcodable');
+    $module = ModuleLoader::inst()->getManifest()->getModule('showpro/silverstripe-shortcodable');
     foreach ($htmlEditorNames as $htmlEditorName) {
         $config = TinyMCEConfig::get($htmlEditorName);
 //        echo $module->getResource('client/javascript/editor_plugin.js');die();
