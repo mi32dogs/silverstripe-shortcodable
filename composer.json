@@ -1,5 +1,5 @@
 {
-    "name": "mi32dogs/silverstripe-shortcodable",
+    "name": "showpro/silverstripe-shortcodable",
     "type": "silverstripe-vendormodule",
     "description": "Provides a GUI for CMS users to insert Shortcodes into the HTMLEditorField + an API for developers to define Shortcodable DataObjects and Views",
     "keywords": [
@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "mi32dogs/showpro-config": "*"
+        "showpro/config": "*"
     },
     "autoload": {
         "psr-4": {
