@@ -500,17 +500,41 @@ _jquery2.default.entwine('ss', function ($) {
             //var html = type + ' type="' + data.ShortcodeClass + '"';
             var html = type;
 
+            console.log('log: ' + html);
+            console.log('log: ' + data.id);
+
             delete data.SecurityID;
             delete data.ShortcodeType;
             delete data.ShortcodeClass;
             delete data.action_addshortcode;
 
-            for (var key in data) {
-                html += ' ' + key + '="' + data[key] + '"';
+            if(html=='ShowPro_ShortCode_TemplateBlock'||html=='ShowPro_Event'){
+                var id = data.id;
+                if(data.section){
+                    id += '/'+data.section;
+                }
+
+                var url = 'admin/AjaxAdmin/BuildShortCodeBlock/'+html+'/' + id;
+
+                $.ajax({
+                    url: url,
+                    async:   false,
+                    success: function(result) {
+                        html = result;
+                    }
+                });
+
+            }else{
+                for (var key in data) {
+                    html += ' ' + key + '="' + data[key] + '"';
+                }
+                html = "[" + html + "]";
             }
 
+
+
             //console.log(html);
-            return "[" + html + "]";
+            return html;
             //return "[" + html + "][/" + type + "]";
         },
 

@@ -93,7 +93,7 @@
                 var data = this.getAttributes();
                 var html = data.shortcodeType;
 
-                console.log(html);
+                console.log('log: ' + html);
 
                 for (var key in data.attributes) {
                     html += ' ' + key + '="' + data.attributes[key] + '"';
