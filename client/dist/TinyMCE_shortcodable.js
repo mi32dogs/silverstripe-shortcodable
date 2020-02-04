@@ -500,8 +500,8 @@ _jquery2.default.entwine('ss', function ($) {
             //var html = type + ' type="' + data.ShortcodeClass + '"';
             var html = type;
 
-            console.log('log: ' + html);
-            console.log('log: ' + data.id);
+            //console.log('log: ' + html);
+            //console.log('log: ' + data.id);
 
             delete data.SecurityID;
             delete data.ShortcodeType;
@@ -533,7 +533,7 @@ _jquery2.default.entwine('ss', function ($) {
 
 
 
-            //console.log(html);
+            console.log(html);
             return html;
             //return "[" + html + "][/" + type + "]";
         },
