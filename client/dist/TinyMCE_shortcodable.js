@@ -501,20 +501,22 @@ _jquery2.default.entwine('ss', function ($) {
             var html = type;
 
             //console.log('log: ' + html);
-            //console.log('log: ' + data.id);
+            //console.log('type: ' + data.type);
 
             delete data.SecurityID;
             delete data.ShortcodeType;
             delete data.ShortcodeClass;
             delete data.action_addshortcode;
 
-            if(html=='ShowPro_ShortCode_TemplateBlock'||html=='ShowPro_Event'){
+            if(html=='ShowPro_ShortCode_TemplateBlock'||(html=='ShowPro_Event'&&data.type=='static')){
                 var id = data.id;
                 if(data.section){
-                    id += '/'+data.section;
+                    id += '/'+data.section+'/'+data.list;
                 }
 
                 var url = 'admin/AjaxAdmin/BuildShortCodeBlock/'+html+'/' + id;
+
+                console.log(url);
 
                 $.ajax({
                     url: url,
@@ -533,7 +535,7 @@ _jquery2.default.entwine('ss', function ($) {
 
 
 
-            console.log(html);
+            //console.log(html);
             return html;
             //return "[" + html + "][/" + type + "]";
         },
