@@ -84,12 +84,15 @@ class ShortCodeFormFactory implements FormFactory
                 } else {
                     $dataObjectSource = $classname::get()->map()->toArray();
                 }
-                $fields->push(
-                    DropdownField::create('id', $class->singular_name(), $dataObjectSource)
-                        ->setValue($id)
-                        ->setHasEmptyDefault(true)
-                        ->addExtraClass('shortcode-value')
-                );
+
+                if ( !singleton($classname)->hasMethod('SkipShortcodableRecords') ) {
+                    $fields->push(
+                        DropdownField::create( 'id', $class->singular_name(), $dataObjectSource )
+                                     ->setValue( $id )
+                                     ->setHasEmptyDefault( true )
+                                     ->addExtraClass( 'shortcode-value' )
+                    );
+                }
             }
             if (singleton($classname)->hasMethod('getShortcodeFields')) {
                 if ($attrFields = singleton($classname)->getShortcodeFields()) {
@@ -102,6 +105,8 @@ class ShortCodeFormFactory implements FormFactory
             }
             $typeName = DBField::create_field('DBClassName', $classname)->getShortName();
             $fields->push(HiddenField::create('ShortcodeType', '', $typeName));
+
+
 
             $this->extend('updateFormFields', $classname, $fields, $context);
         }

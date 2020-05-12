@@ -502,7 +502,15 @@ _jquery2.default.entwine('ss', function ($) {
 
             //console.log('log: ' + html);
             //console.log('type: ' + data.type);
+            if(data.remove){
+                var remove = data.remove;
+                remove.forEach(function(item) {
+                    delete data[item];
+                });
+                delete data.remove;
+            }
 
+            delete data.AttributesCompositeField;
             delete data.SecurityID;
             delete data.ShortcodeType;
             delete data.ShortcodeClass;

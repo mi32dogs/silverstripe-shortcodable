@@ -76,7 +76,7 @@
             },
             // insert shortcode into editor
             insertShortcode: function() {
-                console.log('here');
+                //console.log('here');
                 var shortcode = this.getHTML();
                 if (shortcode.length) {
                     this.modifySelection(function(ed){
