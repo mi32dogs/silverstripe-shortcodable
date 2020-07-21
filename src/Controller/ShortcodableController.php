@@ -11,6 +11,7 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\GroupedDropdownField;
 use SilverStripe\Forms\CompositeField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\FormAction;

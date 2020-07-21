@@ -11,6 +11,7 @@ use Sheadawson\DependentDropdown\Forms\DependentDropdownField;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\CompositeField;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\GroupedDropdownField;
 use SilverStripe\Forms\FormFactory;
 use SilverStripe\Control\RequestHandler;
 use SilverStripe\Core\Config\Configurable;
@@ -28,6 +29,7 @@ use SilverStripe\ORM\FieldType\DBClassName;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\HiddenClass;
 use Silverstripe\Shortcodable\Shortcodable;
+use SilverStripe\View\Requirements;
 use SilverStripe\View\SSViewer;
 use function singleton;
 
@@ -98,7 +100,7 @@ class ShortCodeFormFactory implements FormFactory
                 if ($attrFields = singleton($classname)->getShortcodeFields()) {
                     $fields->push(
                         CompositeField::create($attrFields)
-                            ->addExtraClass('attributes-composite')
+                            ->addExtraClass('attributes-composite outer-wrapper')
                             ->setName('AttributesCompositeField')
                     );
                 }
@@ -110,6 +112,7 @@ class ShortCodeFormFactory implements FormFactory
 
             $this->extend('updateFormFields', $classname, $fields, $context);
         }
+
         return $fields;
     }
 

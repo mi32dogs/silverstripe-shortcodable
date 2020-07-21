@@ -22,6 +22,7 @@ if (is_array($htmlEditorNames)) {
             'shortcodable' => $module->getResource('client/dist/TinyMCE_shortcodable.js'),
         ))->insertButtonsAfter( 'code', ' | shortcodable' );
     }
+
 }
 
 // register classes added via yml config

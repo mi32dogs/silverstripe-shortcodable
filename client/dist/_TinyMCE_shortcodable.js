@@ -516,18 +516,15 @@ _jquery2.default.entwine('ss', function ($) {
             delete data.ShortcodeClass;
             delete data.action_addshortcode;
 
+            if(html=='ShowPro_ShortCode_TemplateBlock'||(html=='ShowPro_Event'&&data.type=='static')){
+                var id = data.id;
+                if(data.section){
+                    id += '/'+data.section+'/'+data.list;
+                }
 
-            for (var key in data) {
-                html += ' ' + key + '="' + data[key] + '"';
-            }
-            html = "[" + html + "]";
+                var url = 'admin/AjaxAdmin/BuildShortCodeBlock/'+html+'/' + id;
 
-
-            if(data.render=='true'){
-
-                var url = 'admin/AjaxAdmin/BuildShortCodeBlock/'+encodeURIComponent(html);
-
-                //console.log(url);
+                console.log(url);
 
                 $.ajax({
                     url: url,
@@ -537,6 +534,11 @@ _jquery2.default.entwine('ss', function ($) {
                     }
                 });
 
+            }else{
+                for (var key in data) {
+                    html += ' ' + key + '="' + data[key] + '"';
+                }
+                html = "[" + html + "]";
             }
 
 
